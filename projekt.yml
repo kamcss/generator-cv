@@ -1,0 +1,18 @@
+Generator CV:
+input image i zamianka co rok
+Baza umiejetnosci, baza wykształcenia, baza doświadczenia zawodowego, baza zainteresowań
+umiejetnosci podzielone na twarde i miekkie
+
+strona podzielona na:
+- blok zdjeia danych i kontaktu
+- blok lewy mniejszy z umiejetnosciami
+- blok prawy z życiorysem
+- stopka z rodo
+
+baza danych użytkownika:
+- nazwazdjecia
+- imie
+- nazwisko
+- telefon 
+- mail
+- inne informacje ze strony( umiejetnosci zyciorys )
