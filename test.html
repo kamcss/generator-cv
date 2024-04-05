@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+    <div id="userInput">
+        <div id="inputDane">
+            <input type="file" id="fileInput" accept="image/*">
+            <input type="text" id="dane" placeholder="Podaj imie i nazwisko">
+            <input type="text" id="mail" placeholder="Podaj Adres email">
+            <input type="text" id="telefon" placeholder="Podaj numer telefonu">
+        </div>
+        <div id="inputSkills"> 
+            <input type="text" id="umiejetnosc" style="height: 90%;width: 30%; margin: 5px;" placeholder="Podaj umiejetność">
+                <select id="skillsSelect" multiple  style="height: auto; width: auto; margin: 5px;">
+                    <optgroup label="Umiejętności techniczne">
+                      <option value="JavaScript">JavaScript</option>
+                      <option value="HTML">HTML</option>
+                      <option value="CSS">CSS</option>
+                      <option value="Python">Python</option>
+                      <option value="Java">Java</option>
+                      <option value="C++">C++</option>
+                      <option value="React">React</option>
+                      <option value="Angular">Angular</option>
+                      <option value="Vue.js">Vue.js</option>
+                      <option value="Node.js">Node.js</option>
+                      <option value="SQL">SQL</option>
+                      <option value="NoSQL">NoSQL</option>
+                      <option value="Git">Git</option>
+                    </optgroup>
+                    <optgroup label="Umiejętności miękkie">
+                      <option value="Komunikatywność">Komunikatywność</option>
+                      <option value="Rozwiązywanie problemów">Rozwiązywanie problemów</option>
+                      <option value="Praca zespołowa">Praca zespołowa</option>
+                      <option value="Kreatywność">Kreatywność</option>
+                      <option value="Elastyczność">Elastyczność</option>
+                      <option value="Analityczne myślenie">Analityczne myślenie</option>
+                      <option value="Asertywność">Asertywność</option>
+                      <option value="Empatia">Empatia</option>
+                      <option value="Negocjacje">Negocjacje</option>
+                      <option value="Organizacja">Organizacja</option>
+                    </optgroup>
+                    <optgroup label="Umiejętności twarde">
+                        <option value="Zarządzanie czasem">Zarządzanie czasem</option>
+                        <option value="Obsługa narzędzi biurowych">Obsługa narzędzi biurowych</option>
+                        <option value="Umiejętność prezentacji">Umiejętność prezentacji</option>
+                        <option value="Zarządzanie projektami">Zarządzanie projektami</option>
+                        <option value="Umiejętność organizacji pracy">Umiejętność organizacji pracy</option>
+                      </optgroup>
+                  </select>
+                  <input type="submit" value="Dodaj" onclick="newSkill()" style="margin: 5px; height: 90%; width: 30%;">
+        </div>
+        <div id="inputBiography">
+            <p>
+            <input type="text" id="wyksztalcenieNazwa" placeholder="Podaj nazwe szkoły">
+            <input type="text" id="wyksztalcenieNazwa" placeholder="Podaj opis>
+            Od: <input type="date" id="wyksztalcenieRozpoczęcie">
+            Do: <input type="date" id="wyksztalcenieZakonczenie">
+            </p>
+            <p>
+            <input type="text" id="doswiadczenieNazwa" placeholder="Podaj nazwe miejsca pracy">
+            <input type="text" id="doswiadczenieStanowisko" placeholder="Podaj stanowisko">
+            <input type="text" id="doswiadczenieOpis" placeholder="Podaj opis obowiązków z miejsca pracy">
+            </p><br>
+            <p>
+            <input type="text" id="bonusNazwa" placeholder="Podaj nazwe dodatkowej informacji">
+            <input type="text" id="bonusOpis" placeholder="Podaj opis dodatkowej informacji">
+            </p>
+            <input type="submit" onclick="wyslij()">
+        </div> 
+            <div id="preview"></div>
+            
+            <script>
+              document.getElementById('fileInput').addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+            
+                reader.onload = function(event) {
+                  var imgElement = document.createElement('img');
+                  imgElement.src = event.target.result;
+                  imgElement.onload = function() {
+                    var previewElement = document.getElementById('preview');
+                    previewElement.innerHTML = '';
+                    previewElement.appendChild(imgElement);
+                  };
+                };
+            
+                reader.readAsDataURL(file);
+              });
+            </script>
+            <script>
+                var umiejetnosci = []; // Tablica do przechowywania unikalnych umiejętności
+
+function newSkill() {
+    var skillInput = document.getElementById("umiejetnosc").value.trim();
+    var selectedSkills = document.getElementById("skillsSelect").selectedOptions;
+
+    // Sprawdzenie, czy wartość pola tekstowego nie jest pusta i czy nie przekroczono limitu umiejętności
+    if (skillInput !== "" && umiejetnosci.length < 8 && !umiejetnosci.includes(skillInput)) {
+        umiejetnosci.push(skillInput); // Dodanie nowej umiejętności do tablicy
+        document.getElementById("umiejetnosc").value = ''; // Wyczyszczenie pola tekstowego po dodaniu umiejętności
+    } else if (umiejetnosci.length >= 8) {
+        alert("Osiągnięto maksymalny rozmiar tablicy umiejętności (8).");
+    }
+
+    // Dodanie wybranych umiejętności z selecta do tablicy (jeśli nie przekroczono limitu umiejętności)
+    for (var i = 0; i < selectedSkills.length && umiejetnosci.length < 8; i++) {
+        var selectedSkill = selectedSkills[i].value;
+        if (!umiejetnosci.includes(selectedSkill)) {
+            umiejetnosci.push(selectedSkill);
+        }
+    }
+
+    // Usunięcie duplikatów z tablicy umiejętności
+    umiejetnosci = umiejetnosci.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+    });
+
+    console.log("Aktualne umiejętności: ", umiejetnosci);
+}
+
+
+            
+                function wyslij() {
+                  // Pobierz wartości z inputów
+                  var imieNazwisko = document.getElementById('dane').value;
+                  var email = document.getElementById('mail').value;
+                  var telefon = document.getElementById('telefon').value;
+                  var umiejetnosc = document.getElementById('umiejetnosc').value;
+                  var wyksztalcenieNazwa = document.getElementById('wyksztalcenieNazwa').value;
+                  var wyksztalcenieOpis = document.getElementById('wyksztalcenieOpis').value;
+                  var wyksztalcenieRozpoczęcie = document.getElementById('wyksztalcenieRozpoczęcie').value;
+                  var wyksztalcenieZakonczenie = document.getElementById('wyksztalcenieZakonczenie').value;
+                  var doswiadczenieNazwa = document.getElementById('doswiadczenieNazwa').value;
+                  var doswiadczenieStanowisko = document.getElementById('doswiadczenieStanowisko').value;
+                  var doswiadczenieOpis = document.getElementById('doswiadczenieOpis').value;
+                  var bonusNazwa = document.getElementById('bonusNazwa').value;
+                  var bonusOpis = document.getElementById('bonusOpis').value;
+                
+                  var pImieNazwisko = document.createElement('p');
+                pImieNazwisko.textContent = "Imię i nazwisko: " + imieNazwisko;
+
+                var pEmail = document.createElement('p');
+                pEmail.textContent = "Email: " + email;
+
+                var pTelefon = document.createElement('p');
+                pTelefon.textContent = "Telefon: " + telefon;
+
+                var pUmiejetnosc = document.createElement('p');
+                pUmiejetnosc.textContent = "Umiejętności: " + umiejetnosc;
+
+                
+                var pWyksztalcenie = document.createElement('p');
+                pWyksztalcenie.textContent = "Wykształcenie: " + wyksztalcenieNazwa + ", " + wyksztalcenieRozpoczęcie + " - " + wyksztalcenieZakonczenie;
+
+                var pWyksztalcenieOpis = document.createElement('p');
+                pWyksztalcenie.textContent = "Wykształcenie: " + wyksztalcenieOpis;
+
+                var pDoswiadczenie = document.createElement('p');
+                pDoswiadczenie.textContent = "Doświadczenie: " + doswiadczenieNazwa + ", "
+
+                var pBonus = document.createElement('p');
+                pBonus.textContent = "Bonus: " + bonusNazwa + ", " + bonusOpis;
+                //dokończ p
+                  // Tutaj możesz wykonać inne operacje, np. wysłać dane na serwer, zaktualizować widok, itp.
+                }
+                </script>
+                
+</body>
+</html>

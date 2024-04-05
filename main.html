@@ -7,17 +7,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="blokDane"> </div>
-    <div id="blokMainContainer">
-        <div id="blokSkill">
+    <div id="userInput">
+            <input type="file" id="fileInput" accept="image/*">
+            <input type="text" id="dane" placeholder="Podaj imie i nazwisko">
+            <input type="text" id="mail" placeholder="Podaj Adres email">
+            <input type="text" id="telefon" placeholder="Podaj numer telefonu">
 
-        </div>
-        <div id="blokLife">
+            
+            <input type="text" id="umiejetnosc">
 
-        </div>
-    </div>
-    <div id="stopka">
+            
+            <input type="text" id="wyksztalcenieNazwa">
+            <input type="date" id="wyksztalcenieRozpoczęcie">
+            <input type="text" id="doswiadczenieNazwa">
+            <input type="text" id="doswiadczenieOpis">
+            <input type="text" id="bonus">
 
-    </div>
+            <div id="preview"></div>
+            
+            <script>
+              document.getElementById('fileInput').addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+            
+                reader.onload = function(event) {
+                  var imgElement = document.createElement('img');
+                  imgElement.src = event.target.result;
+                  imgElement.onload = function() {
+                    var previewElement = document.getElementById('preview');
+                    previewElement.innerHTML = '';
+                    previewElement.appendChild(imgElement);
+                  };
+                };
+            
+                reader.readAsDataURL(file);
+              });
+            </script>
 </body>
 </html>

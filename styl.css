@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+#inputDane{
+    display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+align-items: flex-start;
+align-content: center;
+width: 50%;
+height: 150px;
+background-color: blue;
+float: left;
+padding: 5px;
+}
+#inputDane *{
+    width: 48%;
+    height: 48%;
+    margin: 5px;
+}
+#inputSkills{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 50%;
+    height: 150px;
+    background-color: blue;
+    float: left;
+    padding: 5px;
+}
+
+#inputBiography{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 50%;
+    height: auto;
+    background-color: blue;
+    float: left;
+    padding: 5px;
+}
