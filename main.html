@@ -1,47 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Generator CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .form-section, .cv-section {
+            margin-bottom: 20px;
+        }
+        .cv-section {
+            display: none;
+        }
+        .cv-header {
+            background-color: #f4f4f4;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #ddd;
+        }
+        .cv-header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        .cv-content {
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .cv-section h3 {
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        .cv-content p {
+            margin: 5px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list li {
+            background-color: #f4f4f4;
+            margin: 5px 0;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div id="userInput">
-            <input type="file" id="fileInput" accept="image/*">
-            <input type="text" id="dane" placeholder="Podaj imie i nazwisko">
-            <input type="text" id="mail" placeholder="Podaj Adres email">
-            <input type="text" id="telefon" placeholder="Podaj numer telefonu">
+    <div class="container">
+        <h1>Generator CV</h1>
+        <div class="form-section">
+            <h2>Wprowadź swoje dane</h2>
+            <form id="cvForm">
+                <label for="photo">Zdjęcie:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+                
+                <label for="name">Imię i Nazwisko:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="phone">Telefon:</label>
+                <input type="text" id="phone" name="phone" required><br><br>
+                
+                <label for="about">Opis o sobie:</label>
+                <textarea id="about" name="about" required></textarea><br><br>
+                
+                <h3>Wykształcenie</h3>
+                <label for="eduName1">Nazwa szkoły/uczelni 1:</label>
+                <input type="text" id="eduName1" name="eduName1" required><br><br>
+                
+                <label for="eduYears1">Lata nauki:</label>
+                <input type="text" id="eduYears1" name="eduYears1" required><br><br>
+                
+                <label for="eduDescription1">Opis:</label>
+                <textarea id="eduDescription1" name="eduDescription1" required></textarea><br><br>
+                
+                <label for="eduName2">Nazwa szkoły/uczelni 2:</label>
+                <input type="text" id="eduName2" name="eduName2"><br><br>
+                
+                <label for="eduYears2">Lata nauki:</label>
+                <input type="text" id="eduYears2" name="eduYears2"><br><br>
+                
+                <label for="eduDescription2">Opis:</label>
+                <textarea id="eduDescription2" name="eduDescription2"></textarea><br><br>
+                
+                <h3>Doświadczenie zawodowe</h3>
+                <label for="expName1">Nazwa firmy 1:</label>
+                <input type="text" id="expName1" name="expName1" required><br><br>
+                
+                <label for="expYears1">Lata pracy:</label>
+                <input type="text" id="expYears1" name="expYears1" required><br><br>
+                
+                <label for="expDescription1">Opis:</label>
+                <textarea id="expDescription1" name="expDescription1" required></textarea><br><br>
+                
+                <label for="expName2">Nazwa firmy 2:</label>
+                <input type="text" id="expName2" name="expName2"><br><br>
+                
+                <label for="expYears2">Lata pracy:</label>
+                <input type="text" id="expYears2" name="expYears2"><br><br>
+                
+                <label for="expDescription2">Opis:</label>
+                <textarea id="expDescription2" name="expDescription2"></textarea><br><br>
+                
+                <h3>Umiejętności</h3>
+                <label for="skillSelect">Wybierz umiejętność:</label>
+                <select id="skillSelect">
+                    <option value="">--Wybierz umiejętność--</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                </select><br><br>
+                
+                <label for="skillInput">Lub dodaj własną umiejętność:</label>
+                <input type="text" id="skillInput" name="skillInput"><br><br>
+                
+                <button type="button" class="btn" onclick="addSkill()">Dodaj umiejętność</button>
+                <ul id="skillsList" class="list"></ul><br><br>
 
-            
-            <input type="text" id="umiejetnosc">
+                <h3>Zainteresowania</h3>
+                <input type="text" id="interestInput" name="interestInput"><br><br>
+                
+                <button type="button" class="btn" onclick="addInterest()">Dodaj zainteresowanie</button>
+                <ul id="interestsList" class="list"></ul><br><br>
+                
+                <h3>Certyfikaty</h3>
+                <input type="text" id="certificateInput" name="certificateInput"><br><br>
+                
+                <button type="button" class="btn" onclick="addCertificate()">Dodaj certyfikat</button>
+                <ul id="certificatesList" class="list"></ul><br><br>
+                
+                <button type="button" class="btn" onclick="generateCV()">Generuj CV</button>
+            </form>
+        </div>
 
-            
-            <input type="text" id="wyksztalcenieNazwa">
-            <input type="date" id="wyksztalcenieRozpoczęcie">
-            <input type="text" id="doswiadczenieNazwa">
-            <input type="text" id="doswiadczenieOpis">
-            <input type="text" id="bonus">
+        <div class="cv-section" id="cvSection">
+            <h2>Twoje CV</h2>
+            <div class="cv-header">
+                <img id="cvPhoto" src="#" alt="Zdjęcie">
+                <div>
+                    <h1 id="cvName"></h1>
+                    <p>Email: <span id="cvEmail"></span></p>
+                    <p>Telefon: <span id="cvPhone"></span></p>
+                </div>
+            </div>
+            <div class="cv-content">
+                <h3>Opis o sobie</h3>
+                <p id="cvAbout"></p>
+                
+                <h3>Wykształcenie</h3>
+                <div id="cvEducation">
+                    <p><strong>Nazwa:</strong> <span id="cvEduName1"></span></p>
+                    <p><strong>Lata:</strong> <span id="cvEduYears1"></span></p>
+                    <p><strong>Opis:</strong> <span id="cvEduDescription1"></span></p>
+                    <p><strong>Nazwa:</strong> <span id="cvEduName2"></span></p>
+                    <p><strong>Lata:</strong> <span id="cvEduYears2"></span></p>
+                    <p><strong>Opis:</strong> <span id="cvEduDescription2"></span></p>
+                </div>
+                
+                <h3>Doświadczenie zawodowe</h3>
+                <div id="cvExperience">
+                    <p><strong>Nazwa:</strong> <span id="cvExpName1"></span></p>
+                    <p><strong>Lata:</strong> <span id="cvExpYears1"></span></p>
+                    <p><strong>Opis:</strong> <span id="cvExpDescription1"></span></p>
+                    <p><strong>Nazwa:</strong> <span id="cvExpName2"></span></p>
+                    <p><strong>Lata:</strong> <span id="cvExpYears2"></span></p>
+                    <p><strong>Opis:</strong> <span id="cvExpDescription2"></span></p>
+                </div>
+                
+                <h3>Umiejętności</h3>
+                <ul id="cvSkillsList" class="list"></ul>
+                
+                <h3>Zainteresowania</h3>
+                <ul id="cvInterestsList" class="list"></ul>
+                
+                <h3>Certyfikaty</h3>
+                <ul id="cvCertificatesList" class="list"></ul>
+            </div>
+        </div>
+    </div>
 
-            <div id="preview"></div>
+    <script>
+        var skills = [];
+        var interests = [];
+        var certificates = [];
+
+        function addSkill() {
+            var skillSelect = document.getElementById('skillSelect');
+            var skillInput = document.getElementById('skillInput');
+            var skill = skillSelect.value || skillInput.value;
+
+            if (skill) {
+                skills.push(skill);
+                var skillsList = document.getElementById('skillsList');
+                var li = document.createElement('li');
+                li.textContent = skill;
+                skillsList.appendChild(li);
+                
+                skillSelect.value = "";
+                skillInput.value = "";
+            }
+        }
+
+        function addInterest() {
+            var interestInput = document.getElementById('interestInput');
+            var interest = interestInput.value;
+
+            if (interest) {
+                interests.push(interest);
+                var interestsList = document.getElementById('interestsList');
+                var li = document.createElement('li');
+                li.textContent = interest;
+                interestsList.appendChild(li);
+                
+                interestInput.value = "";
+            }
+        }
+
+        function addCertificate() {
+            var certificateInput = document.getElementById('certificateInput');
+            var certificate = certificateInput.value;
+
+            if (certificate) {
+                certificates.push(certificate);
+                var certificatesList = document.getElementById('certificatesList');
+                var li = document.createElement('li');
+                li.textContent = certificate;
+                certificatesList.appendChild(li);
+                
+                certificateInput.value = "";
+            }
+        }
+
+        function generateCV() {
+            // Pobieranie wartości z formularza
+            var photo = document.getElementById('photo').files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('cvPhoto').src = e.target.result;
+            }
+            reader.readAsDataURL(photo);
             
-            <script>
-              document.getElementById('fileInput').addEventListener('change', function(event) {
-                var file = event.target.files[0];
-                var reader = new FileReader();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var about = document.getElementById('about').value;
             
-                reader.onload = function(event) {
-                  var imgElement = document.createElement('img');
-                  imgElement.src = event.target.result;
-                  imgElement.onload = function() {
-                    var previewElement = document.getElementById('preview');
-                    previewElement.innerHTML = '';
-                    previewElement.appendChild(imgElement);
-                  };
-                };
+            var eduName1 = document.getElementById('eduName1').value;
+            var eduYears1 = document.getElementById('eduYears1').value;
+            var eduDescription1 = document.getElementById('eduDescription1').value;
+            var eduName2 = document.getElementById('eduName2').value;
+            var eduYears2 = document.getElementById('eduYears2').value;
+            var eduDescription2 = document.getElementById('eduDescription2').value;
             
-                reader.readAsDataURL(file);
-              });
-            </script>
+            var expName1 = document.getElementById('expName1').value;
+            var expYears1 = document.getElementById('expYears1').value;
+            var expDescription1 = document.getElementById('expDescription1').value;
+            var expName2 = document.getElementById('expName2').value;
+            var expYears2 = document.getElementById('expYears2').value;
+            var expDescription2 = document.getElementById('expDescription2').value;
+            
+            // Wstawianie wartości do szablonu CV
+            document.getElementById('cvName').innerText = name;
+            document.getElementById('cvEmail').innerText = email;
+            document.getElementById('cvPhone').innerText = phone;
+            document.getElementById('cvAbout').innerText = about;
+            
+            document.getElementById('cvEduName1').innerText = eduName1;
+            document.getElementById('cvEduYears1').innerText = eduYears1;
+            document.getElementById('cvEduDescription1').innerText = eduDescription1;
+            document.getElementById('cvEduName2').innerText = eduName2;
+            document.getElementById('cvEduYears2').innerText = eduYears2;
+            document.getElementById('cvEduDescription2').innerText = eduDescription2;
+            
+            document.getElementById('cvExpName1').innerText = expName1;
+            document.getElementById('cvExpYears1').innerText = expYears1;
+            document.getElementById('cvExpDescription1').innerText = expDescription1;
+            document.getElementById('cvExpName2').innerText = expName2;
+            document.getElementById('cvExpYears2').innerText = expYears2;
+            document.getElementById('cvExpDescription2').innerText = expDescription2;
+            
+            var cvSkillsList = document.getElementById('cvSkillsList');
+            cvSkillsList.innerHTML = '';
+            skills.forEach(function(skill) {
+                var li = document.createElement('li');
+                li.textContent = skill;
+                cvSkillsList.appendChild(li);
+            });
+
+            var cvInterestsList = document.getElementById('cvInterestsList');
+            cvInterestsList.innerHTML = '';
+            interests.forEach(function(interest) {
+                var li = document.createElement('li');
+                li.textContent = interest;
+                cvInterestsList.appendChild(li);
+            });
+
+            var cvCertificatesList = document.getElementById('cvCertificatesList');
+            cvCertificatesList.innerHTML = '';
+            certificates.forEach(function(certificate) {
+                var li = document.createElement('li');
+                li.textContent = certificate;
+                cvCertificatesList.appendChild(li);
+            });
+
+            // Wyświetlanie sekcji CV
+            document.getElementById('cvSection').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
