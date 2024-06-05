@@ -1,48 +1,115 @@
-*{
-    box-sizing: border-box;
+
+body {
+    font-family: Arial, sans-serif;
 }
-#inputDane{
-    display: flex;
-flex-direction: row;
-flex-wrap: wrap;
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.form-section, .cv-section {
+    margin-bottom: 20px;
+}
+.form-group {
+display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: flex-start;
-align-content: center;
-width: 50%;
-height: 150px;
-background-color: blue;
-float: left;
-padding: 5px;
-}
-#inputDane *{
-    width: 48%;
-    height: 48%;
-    margin: 5px;
-}
-#inputSkills{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    width: 50%;
-    height: 150px;
-    background-color: blue;
-    float: left;
-    padding: 5px;
+align-content: flex-start;
 }
 
-#inputBiography{
+.form-group > div {
+flex: 1 1 calc(50% - 20px); /* Zmieniamy na 50% szerokości z możliwością umieszczenia dwóch obok siebie */
+box-sizing: border-box;
+margin-bottom: 10px;
+}
+
+/* Dodatkowe style dla małych ekranów */
+@media screen and (max-width: 600px) {
+.form-group > div {
+flex: 1 1 100%; /* Dla małych ekranów, ustawiamy 100% szerokości, aby elementy wyświetlały się jeden pod drugim */
+}
+}
+
+.form-group > div input,
+.form-group > div textarea,
+.form-group > div select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a04c4c;
+    border-radius: 5px;
+}
+.form-group > div input[type="file"] {
+    padding: 3px;
+}
+.cv-section {
+    display: none;
+}
+.cv-header {
+    background-color: #f4f4f4;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    width: 50%;
-    height: auto;
-    background-color: blue;
-    float: left;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+.cv-header img {
+    border-radius: 50%;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+}
+.cv-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+.cv-section h3 {
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+.cv-content p {
+    margin: 5px 0;
+}
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+label {
+    display: block;
+    margin-top: 10px;
+}
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+.list li {
+    background-color: #f4f4f4;
+    margin: 5px 0;
     padding: 5px;
+}
+#skillSelect {
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+option {
+    padding: 10px;
+}
+optgroup {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
 }

@@ -4,78 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generator CV</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .form-section, .cv-section {
-            margin-bottom: 20px;
-        }
-        .cv-section {
-            display: none;
-        }
-        .cv-header {
-            background-color: #f4f4f4;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            border-bottom: 2px solid #ddd;
-        }
-        .cv-header img {
-            border-radius: 50%;
-            margin-right: 20px;
-            width: 100px;
-            height: 100px;
-        }
-        .cv-content {
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-        }
-        .cv-section h3 {
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            color: #4CAF50;
-        }
-        .cv-content p {
-            margin: 5px 0;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        .list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .list li {
-            background-color: #f4f4f4;
-            margin: 5px 0;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styl.css">
 </head>
 <body>
     <div class="container">
         <h1>Generator CV</h1>
         <div class="form-section">
-            <h2>Wprowadź swoje dane</h2>
             <form id="cvForm">
+                <div class="form-group">
+                    
+                <h2>Wprowadź swoje dane</h2>
                 <label for="photo">Zdjęcie:</label>
                 <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
                 
@@ -90,7 +28,8 @@
                 
                 <label for="about">Opis o sobie:</label>
                 <textarea id="about" name="about" required></textarea><br><br>
-                
+                </div>  
+                <div class="form-group">
                 <h3>Wykształcenie</h3>
                 <label for="eduName1">Nazwa szkoły/uczelni 1:</label>
                 <input type="text" id="eduName1" name="eduName1" required><br><br>
@@ -109,7 +48,8 @@
                 
                 <label for="eduDescription2">Opis:</label>
                 <textarea id="eduDescription2" name="eduDescription2"></textarea><br><br>
-                
+                </div>
+                <div class="form-group">
                 <h3>Doświadczenie zawodowe</h3>
                 <label for="expName1">Nazwa firmy 1:</label>
                 <input type="text" id="expName1" name="expName1" required><br><br>
@@ -128,24 +68,69 @@
                 
                 <label for="expDescription2">Opis:</label>
                 <textarea id="expDescription2" name="expDescription2"></textarea><br><br>
-                
+                </div>
+                <div class="form-group">
                 <h3>Umiejętności</h3>
                 <label for="skillSelect">Wybierz umiejętność:</label>
                 <select id="skillSelect">
-                    <option value="">--Wybierz umiejętność--</option>
-                    <option value="HTML">HTML</option>
-                    <option value="CSS">CSS</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="Python">Python</option>
-                    <option value="Java">Java</option>
-                </select><br><br>
+                    <option value="">Wybierz umiejętność</option>
+                    <optgroup label="Umiejętności Twarde">
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                        <option value="Java">Java</option>
+                        <option value="SQL">SQL</option>
+                        <option value="C++">C++</option>
+                        <option value="Zarządzanie Projektami">Zarządzanie Projektami</option>
+                        <option value="Analiza Danych">Analiza Danych</option>
+                        <option value="Excel">Excel</option>
+                        <option value="Zarządzanie Finansami">Zarządzanie Finansami</option>
+                        <option value="Marketing Cyfrowy">Marketing Cyfrowy</option>
+                        <option value="Grafika Komputerowa">Grafika Komputerowa</option>
+                        <option value="Prawo">Prawo</option>
+                    </optgroup>
+                    <optgroup label="Języki Obce">
+                        <option value="Angielski - Podstawowy">Angielski - Podstawowy</option>
+                        <option value="Angielski - Średniozaawansowany">Angielski - Średniozaawansowany</option>
+                        <option value="Angielski - Zaawansowany">Angielski - Zaawansowany</option>
+                        <option value="Niemiecki - Podstawowy">Niemiecki - Podstawowy</option>
+                        <option value="Niemiecki - Średniozaawansowany">Niemiecki - Średniozaawansowany</option>
+                        <option value="Niemiecki - Zaawansowany">Niemiecki - Zaawansowany</option>
+                        <option value="Francuski - Podstawowy">Francuski - Podstawowy</option>
+                        <option value="Francuski - Średniozaawansowany">Francuski - Średniozaawansowany</option>
+                        <option value="Francuski - Zaawansowany">Francuski - Zaawansowany</option>
+                        <option value="Hiszpański - Podstawowy">Hiszpański - Podstawowy</option>
+                        <option value="Hiszpański - Średniozaawansowany">Hiszpański - Średniozaawansowany</option>
+                        <option value="Hiszpański - Zaawansowany">Hiszpański - Zaawansowany</option>
+                        <option value="Włoski - Podstawowy">Włoski - Podstawowy</option>
+                        <option value="Włoski - Średniozaawansowany">Włoski - Średniozaawansowany</option>
+                        <option value="Włoski - Zaawansowany">Włoski - Zaawansowany</option>
+                    </optgroup>
+                    <optgroup label="Umiejętności Miękkie">
+                        <option value="Komunikacja">Komunikacja</option>
+                        <option value="Praca w Zespole">Praca w Zespole</option>
+                        <option value="Rozwiązywanie Problemów">Rozwiązywanie Problemów</option>
+                        <option value="Zarządzanie Czasem">Zarządzanie Czasem</option>
+                        <option value="Elastyczność">Elastyczność</option>
+                        <option value="Przywództwo">Przywództwo</option>
+                        <option value="Kreatywność">Kreatywność</option>
+                        <option value="Krytyczne Myślenie">Krytyczne Myślenie</option>
+                        <option value="Negocjacje">Negocjacje</option>
+                        <option value="Empatia">Empatia</option>
+                        <option value="Radzenie Sobie ze Stresem">Radzenie Sobie ze Stresem</option>
+                        <option value="Zarządzanie Konfliktami">Zarządzanie Konfliktami</option>
+                        <option value="Motywowanie Innych">Motywowanie Innych</option>
+                        <option value="Publiczne Wystąpienia">Publiczne Wystąpienia</option>
+                    </optgroup>
+                </select>
+                <br><br>
                 
                 <label for="skillInput">Lub dodaj własną umiejętność:</label>
                 <input type="text" id="skillInput" name="skillInput"><br><br>
                 
                 <button type="button" class="btn" onclick="addSkill()">Dodaj umiejętność</button>
                 <ul id="skillsList" class="list"></ul><br><br>
-
                 <h3>Zainteresowania</h3>
                 <input type="text" id="interestInput" name="interestInput"><br><br>
                 
@@ -158,6 +143,7 @@
                 <button type="button" class="btn" onclick="addCertificate()">Dodaj certyfikat</button>
                 <ul id="certificatesList" class="list"></ul><br><br>
                 
+                </div>
                 <button type="button" class="btn" onclick="generateCV()">Generuj CV</button>
             </form>
         </div>
@@ -173,7 +159,7 @@
                 </div>
             </div>
             <div class="cv-content">
-                <h3>Opis o sobie</h3>
+                <h3>O Mnie</h3>
                 <p id="cvAbout"></p>
                 
                 <h3>Wykształcenie</h3>
@@ -204,6 +190,9 @@
                 
                 <h3>Certyfikaty</h3>
                 <ul id="cvCertificatesList" class="list"></ul>
+                <hr>
+                <div id="rodo">Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).</div>
+
             </div>
         </div>
     </div>
@@ -296,14 +285,14 @@
             
             document.getElementById('cvEduName1').innerText = eduName1;
             document.getElementById('cvEduYears1').innerText = eduYears1;
-            document.getElementById('cvEduDescription1').innerText = eduDescription1;
+            document.getElementById('cvEduDescription1').innerHTML = eduDescription1+"<hr>";
             document.getElementById('cvEduName2').innerText = eduName2;
             document.getElementById('cvEduYears2').innerText = eduYears2;
             document.getElementById('cvEduDescription2').innerText = eduDescription2;
             
             document.getElementById('cvExpName1').innerText = expName1;
             document.getElementById('cvExpYears1').innerText = expYears1;
-            document.getElementById('cvExpDescription1').innerText = expDescription1;
+            document.getElementById('cvExpDescription1').innerHTML = expDescription1+"<hr>";
             document.getElementById('cvExpName2').innerText = expName2;
             document.getElementById('cvExpYears2').innerText = expYears2;
             document.getElementById('cvExpDescription2').innerText = expDescription2;
